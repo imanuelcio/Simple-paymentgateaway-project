@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { product } from "../libs/product";
+import axios from "axios";
 const Checkout = () => {
   const [quantity, setQuantity] = useState(1);
 
@@ -12,11 +13,19 @@ const Checkout = () => {
   };
 
   const checkout = async () => {
-    alert("Checkout SNAP! 🌟")
+    const dataProduct = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: quantity,
+    };
+
+    const { response } = await axios.post("/api/token", dataProduct);
+    console.log(response);
   };
 
   const generatePaymentLink = async () => {
-    alert("Checkout Payment Link! 🔥")
+    alert("Checkout Payment Link! 🔥");
   };
 
   return (
